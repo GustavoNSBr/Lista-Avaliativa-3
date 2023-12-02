@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Função para converter número romano para decimal
-int romanToDecimal(char c) {
+int romanoPraDecimal(char c) {
     switch(c) {
         case 'M': return 1000;
         case 'D': return 500;
@@ -15,39 +15,39 @@ int romanToDecimal(char c) {
 }
 
 // Função para converter decimal para binário
-void decimalToBinary(int decimal) {
-    int binary[32];
+void decimalParaBinario(int decimal) {
+    int binario[32];
     int i = 0;
 
     while (decimal > 0) {
-        binary[i++] = decimal % 2;
+        binario[i++] = decimal % 2;
         decimal = decimal / 2;
     }
 
     for (int j = i - 1; j >= 0; j--) {
-        printf("%d", binary[j]);
+        printf("%d", binario[j]);
     }
     printf("\n");
 }
 
 int main() {
-    char romanNumber[13];
-    scanf("%s", romanNumber);
+    char numeroRomano[13];
+    scanf("%s", numeroRomano);
 
     int decimal = 0;
-    for (int i = 0; romanNumber[i] != '\0'; i++) {
-        if (romanToDecimal(romanNumber[i]) < romanToDecimal(romanNumber[i + 1])) {
-            decimal += romanToDecimal(romanNumber[i + 1]) - romanToDecimal(romanNumber[i]);
+    for (int i = 0; numeroRomano[i] != '\0'; i++) {
+        if (romanoPraDecimal(numeroRomano[i]) < romanoPraDecimal(numeroRomano[i + 1])) {
+            decimal += romanoPraDecimal(numeroRomano[i + 1]) - romanoPraDecimal(numeroRomano[i]);
             i++;
         } else {
-            decimal += romanToDecimal(romanNumber[i]);
+            decimal += romanoPraDecimal(numeroRomano[i]);
         }
     }
 
-    printf("%s na base 2: ", romanNumber);
-    decimalToBinary(decimal);
-    printf("%s na base 10: %d\n", romanNumber, decimal);
-    printf("%s na base 16: %x\n", romanNumber, decimal);
+    printf("%s na base 2: ", numeroRomano);
+    decimalParaBinario(decimal);
+    printf("%s na base 10: %d\n", numeroRomano, decimal);
+    printf("%s na base 16: %x\n", numeroRomano, decimal);
 
     return 0;
 }
